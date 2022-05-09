@@ -1,4 +1,5 @@
-export default {
+// eslint-disable-next-line nuxt/no-cjs-in-config
+module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'meituan-pc-ssr',
@@ -24,7 +25,10 @@ export default {
   plugins: [
   ],
 
+  telemetry: false, // 关闭每次运行时，nuxt都会询问 Are you interested in participation?
+
   // Auto import components: https://go.nuxtjs.dev/config-components
+  // 可以直接使用组件，无需导入
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

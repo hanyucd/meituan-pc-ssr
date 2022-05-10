@@ -2,7 +2,7 @@
 module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'meituan-pc-ssr',
+    title: '美团网-SSR',
     htmlAttrs: {
       lang: 'en'
     },
@@ -19,10 +19,12 @@ module.exports = {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    'element-ui/lib/theme-chalk/index.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/element-ui' }
   ],
 
   telemetry: false, // 关闭每次运行时，nuxt都会询问 Are you interested in participation?
@@ -52,4 +54,4 @@ module.exports = {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
-}
+};

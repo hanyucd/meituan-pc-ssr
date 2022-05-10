@@ -14,6 +14,16 @@ module.exports = {
   ],
   plugins: [
   ],
-  // add your custom rules here
-  rules: {}
-}
+  /**
+   * add your custom rules here
+   *
+   * off 或 0 - 关闭规则
+   * warn 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),
+   * error 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+   */
+  rules: {
+    semi: ['error', 'always'], // 强制在语句末尾使用分号
+    'no-unused-vars': 'off', // 禁止出现未使用过的变量
+    'vue/singleline-html-element-content-newline': 'off' // 关闭在单行元素的内容之前和之后需要换行
+  }
+};

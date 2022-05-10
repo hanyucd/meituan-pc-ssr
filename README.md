@@ -17,6 +17,18 @@ $ yarn start
 $ yarn generate
 ```
 
+## 参考
+
+[Nuxt.js实战和配置详解](https://www.zhangshengrong.com/p/noXQolrPaG/)
+
+[nuxt如何配置](https://www.modb.pro/db/70322)
+
+[Nuxt.js + Koa 项目搭建以及增加server配置记录](https://icode.best/i/31960241667977)
+
+[解决Nuxt.js项目server入口文件不能使用import](https://blog.csdn.net/ZQD666/article/details/102509035)
+
+[针对【create-nuxt-app新版本v3.2.0】构建项目时没有server](https://blog.csdn.net/jokerjiaojiao/article/details/108041009)
+
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
 ## Special Directories

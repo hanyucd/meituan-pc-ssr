@@ -6,21 +6,23 @@
       </el-col>
     </el-row>
 
-    <!-- <el-row>
+    <el-row>
       <el-col>
-        <search-bar />
+        <header-search />
       </el-col>
-    </el-row> -->
+    </el-row>
   </div>
 </template>
 
 <script>
 import headerTopbar from '../header-topbar/header-topbar';
+import headerSearch from '../header-search/header-search';
 
 export default {
   name: 'HeaderIndex',
   components: {
-    headerTopbar
+    headerTopbar,
+    headerSearch
   }
 };
 </script>

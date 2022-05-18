@@ -1,5 +1,7 @@
 <template>
+  <!-- gutter指定间隔 -->
   <el-row :gutter="0" class="m-header">
+    <!-- 栅格占据的列数 -->
     <el-col :span="5">
       <header-geo />
     </el-col>

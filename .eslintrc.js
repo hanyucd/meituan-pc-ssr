@@ -25,6 +25,7 @@ module.exports = {
     semi: ['error', 'always'], // 强制在语句末尾使用分号
     'no-console': 'off', // 禁止调用 console 对象的方法
     'no-unused-vars': 'off', // 禁止出现未使用过的变量
+    'space-before-function-paren': 'off', // 要求或禁止函数圆括号之前有一个空格
     'vue/singleline-html-element-content-newline': 'off' // 关闭在单行元素的内容之前和之后需要换行
   }
 };

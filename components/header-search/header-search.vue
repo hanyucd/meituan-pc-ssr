@@ -42,16 +42,16 @@
             <nuxt-link to="/" class="takeout">美团外卖</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/" class="movie">猫眼电影 </nuxt-link>
+            <nuxt-link to="/" class="movie">猫眼电影</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/" class="hotel"> 美团酒店 </nuxt-link>
+            <nuxt-link to="/" class="hotel">美团酒店</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/" class="apartment"> 民宿/公寓 </nuxt-link>
+            <nuxt-link to="/" class="apartment">民宿/公寓</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/" class="business"> 商家入驻 </nuxt-link>
+            <nuxt-link to="/" class="business">商家入驻</nuxt-link>
           </li>
         </ul>
       </el-col>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-// import _ from 'lodash'; // 用于延时
+import _ from 'lodash'; // 用于延时
 
 export default {
   data () {
@@ -89,30 +89,30 @@ export default {
     };
   },
   computed: {
-    isHotPlace () {
+    isHotPlace() {
       // 搜索框聚焦且无值
       return this.isFocus && !this.search;
     },
-    isSearchList () {
+    isSearchList() {
       // 搜索框聚焦且有值
       return this.isFocus && this.search;
     }
   },
   methods: {
-    focus () {
+    focus() {
       this.isFocus = true;
     },
-    blur () {
+    blur() {
       // 闭包需要暂存this
       const self = this;
       // 延时函数，防止失焦热门结果直接消失无法点击
       setTimeout(function () {
         self.isFocus = false;
       }, 200);
-    }
+    },
     // // 用于根据输入内容更新实时搜索结果
     // // 借助loadsh库,实现防抖
-    // input: _.debounce(async function () {
+    input: _.debounce(async function () {
     //   const self = this;
     //   // 从vuex取得当前城市，去掉“市”字（第三方服务限制）
     //   const city = self.$store.state.geo.position.city.replace('市', '');
@@ -126,7 +126,7 @@ export default {
     //   });
     //   // 数据填充
     //   self.searchList = top.slice(0, 10);
-    // }, 300)
+    }, 300)
   }
 };
 </script>

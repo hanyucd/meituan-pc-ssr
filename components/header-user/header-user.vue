@@ -14,7 +14,7 @@
 <script>
 export default {
   name: 'HeaderUser',
-  data () {
+  data() {
     return {
       user: ''
     };

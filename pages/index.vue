@@ -1,12 +1,27 @@
 <template>
-  <!-- <Tutorial /> -->
-  <div>
-    中间内容
+  <div class="page-index">
+    <el-row>
+      <el-col :span="5">
+        <index-menu />
+      </el-col>
+      <el-col :span="19">2</el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="24">3</el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import indexMenu from '@/components/index/index-menu/index-menu';
+
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  components: { indexMenu }
 };
 </script>
+
+<style lang="scss">
+  @import '@/assets/css/index/index.scss';
+</style>

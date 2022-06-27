@@ -8,17 +8,21 @@
       <nuxt />
     </el-main>
 
-    <el-footer>Footer</el-footer>
+    <el-footer>
+      <m-footer />
+    </el-footer>
   </el-container>
 </template>
 
 <script>
 import mHeader from '@/components/header/header';
+import mFooter from '@/components/public/footer/index.vue';
 
 export default {
   name: 'DefaultLayout',
   components: {
-    mHeader
+    mHeader,
+    mFooter
   },
   data () {
     return {};

@@ -1,6 +1,6 @@
 
 export default {
-  // 1.3配置数据库
+  // 1.3 配置数据库
   dbs: 'mongodb://127.0.0.1:27017/meituan-pc',
   redis: {
     get host() {
@@ -13,28 +13,33 @@ export default {
     }
   },
   stmp: {
+    // 默认腾讯邮箱
     get host() {
-      // 默认腾讯邮箱
       return 'smtp.qq.com';
     },
+    // 自己接受验证码的腾讯邮箱
     get user() {
-      // 自己接受验证码的腾讯邮箱
-      return '583520052@qq.com';
+      return '1807003141@qq.com';
     },
+    // 填入你的授权码
     get pass() {
-      return 'nrgjtbcqxijtdjhh'; // 填入你的授权码
+      return 'fnuktnvqagwgdibh';
     },
-    get code () {
-      // 生成验证码
+    // 生成验证码
+    get code() {
       return () => {
         return Math.random().toString(16).slice(2, 6).toUpperCase();
       };
     },
+    // 验证码过期时间
     get expire () {
-      // 验证码过期
       return () => {
         return new Date().getTime() + 60 * 60 * 1000;
       };
     }
   }
 };
+
+// POP3/STMP: fnuktnvqagwgdibh
+
+// IMAP/SMTP: snspmhtnsdhoefag

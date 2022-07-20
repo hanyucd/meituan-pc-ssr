@@ -2,9 +2,9 @@
 // import Router from 'koa-router'; // koa路由
 import Redis from 'koa-redis'; // redis
 import nodeMailer from 'nodemailer'; // node发邮件
-
 import userModel from '../dbs/models/userModel';
 import Email from '../dbs/config'; // mongoose用户模型
+import Passport from './utils/passport'; // 权限认证工具类
 import axios from './utils/axios'; // HTTP请求
 
 const Router = require('@koa/router'); // 邮件配置文件
@@ -61,4 +61,22 @@ router.post('/signup', async (ctx) => {
   } else {
     ctx.body = { code: -1, msg: '注册失败' };
   }
+});
+
+/**
+ * 用户登录
+ */
+router.post('/signin', async (ctx, next) => {
+  // 调用passport方法验证，参数：（策略，验证回调）
+  return await Passport.authenticate('local', function (err, user, info, status) {
+    if (err) {
+      ctx.body = { code: -1, msg: err };
+    } else if (user) {
+      ctx.body = { code: 0, msg: '登录成功', user };
+      // 进行登录动作
+      return ctx.login(user);
+    } else {
+      ctx.body = { code: 1, msg: info };
+    }
+  })(ctx, next);
 });

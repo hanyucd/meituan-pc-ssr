@@ -1,16 +1,15 @@
 // koa2使用passport权限认证中间件安装包
-import passport from 'koa-passport';
+const passport = require('koa-passport');
 // 本地验证策略
-import LocalStrategy from 'passport-local';
-
+const LocalStrategy = require('passport-local');
 // mongodb user 数据库表
-import UserModel from '../../dbs/model/userModel';
+const userModel = require('../../dbs/model/userModel');
 
 // 设置权限验证策略
 passport.use(new LocalStrategy(async function (username, password, done) {
   const where = { username }; // 查询条件
   // mongoDb中找到指定用户模型实例
-  const result = await UserModel.findOne(where);
+  const result = await userModel.findOne(where);
 
   if (result != null) {
     if (result.password === password) { // 匹配密码
@@ -33,4 +32,4 @@ passport.deserializeUser(function (user, done) {
   return done(null, user);
 });
 
-export default passport;
+module.exports = passport;

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose'); // mongoose
 const Schema = mongoose.Schema;
 
 // 实例化Schema建立用户模型（对应mongoDB集合）
@@ -20,4 +20,4 @@ const UserSchema = new Schema({
 });
 
 // 生成模型并导出
-export default mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

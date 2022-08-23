@@ -1,5 +1,5 @@
 
-export default {
+module.exports = {
   // 1.3 配置数据库
   dbs: 'mongodb://127.0.0.1:27017/meituan-pc',
   redis: {

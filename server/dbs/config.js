@@ -12,7 +12,7 @@ module.exports = {
       return 6379;
     }
   },
-  stmp: {
+  smtp: {
     // 默认腾讯邮箱
     get host() {
       return 'smtp.qq.com';

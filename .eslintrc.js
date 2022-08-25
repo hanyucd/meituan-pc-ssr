@@ -29,6 +29,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off', // 关闭在单行元素的内容之前和之后需要换行
     'require-await': 'off',
     'import/order': 'off',
-    'import/first': 'off'
+    'import/first': 'off',
+    'no-unreachable': 'off'
   }
 };

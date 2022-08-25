@@ -7,8 +7,7 @@ const Passport = require('./utils/passport');
 const axios = require('./utils/axios');
 
 const Router = require('@koa/router'); // 邮件配置文件
-// 获取redis客户端
-const redisCli = new Redis().client;
+const redisCli = new Redis().client; // 获取redis客户端
 
 // 创建 koa 路由对象，设置前缀
 const router = new Router({ prefix: '/users' });
@@ -84,10 +83,16 @@ router.post('/signin', async (ctx, next) => {
  * 发送验证码
  */
 router.post('/verify', async (ctx) => {
+  console.log(ctx.request.body);
+  console.log('发送验证码');
+  // return;
+
   // 获取 请求中 用户名和验证码过期时间
   const username = ctx.request.body.username;
   // 获取 Redis中 用户名和验证码过期时间
   const saveExpire = await redisCli.hget(`nodemail:${username}`, 'expire');
+
+  console.log('redis保存过期:', saveExpire);
 
   // 如果存在发送限制时间，且当前未到发送限制时间
   if (saveExpire && new Date().getTime() - saveExpire < 0) {

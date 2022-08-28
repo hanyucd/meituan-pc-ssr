@@ -127,8 +127,10 @@ export default {
     };
   },
   methods: {
-    // 发送验证码
-    sendMsg () {
+    /**
+     * 发送验证码
+     */
+    sendMsg() {
       const self = this;
       let namePass;
       let emailPass;
@@ -181,7 +183,9 @@ export default {
         });
       }
     },
-    // 注册
+    /**
+     * 用户注册
+     */
     register () {
       const self = this;
       // el-ui提供的输入验证API
@@ -195,7 +199,10 @@ export default {
             password: CryptoJS.MD5(self.ruleForm.pwd).toString(), // 密码MD5加密
             email: self.ruleForm.email, // 邮箱
             code: self.ruleForm.code // 验证码
-          }).then(({ status, data }) => {
+          }).then((res) => {
+            console.log(res);
+
+            const { status, data } = res;
             // 如果响应正常
             if (status === 200) {
               // 如果data正常

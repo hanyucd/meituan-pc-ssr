@@ -3,7 +3,7 @@ const passport = require('koa-passport');
 // 本地验证策略
 const LocalStrategy = require('passport-local');
 // mongodb user 数据库表
-const userModel = require('../../dbs/model/userModel');
+const userModel = require('../models/userModel');
 
 // 设置权限验证策略
 passport.use(new LocalStrategy(async function (username, password, done) {

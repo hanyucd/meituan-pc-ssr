@@ -5,7 +5,7 @@
       height: auto;
       margin: 40px auto 30px;
       .logo {
-        background: url(//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png) no-repeat;
+        background-image: url(//s0.meituan.net/bs/file/?f=fe-sso-fs:build/assets/sp-retina.b95a7dd.png);
         background-position: 0 !important;
         background-size: contain !important;
         width: 82px;
@@ -60,11 +60,8 @@
 
       .foot {
         margin-top: 10px;
-        font-size: 13px;
         b {
           float: right;
-          color: #FE8C00;
-          font-weight: normal;
         }
       }
 
@@ -95,16 +92,10 @@
 
       .btn-login {
         margin-top: 10px;
-        color: #222;
-        background-color: #FFBD00;
-        font-size: 14px;
-        font-weight: bold;
+        color: #fff;
+        background-color: #2db3a6;
         border: none;
         padding: 12px 15px;
-      }
-      .signup-guide{
-        margin-top: 8px;
-        font-size: 13px;
       }
     }
 }

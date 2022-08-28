@@ -7,10 +7,10 @@ const bodyParser = require('koa-bodyparser');
 const session = require('koa-generic-session'); // 处理session
 const Redis = require('koa-redis'); // 处理session
 const json = require('koa-json'); // 数据库配置
-const dbConfig = require('./dbs/config'); // 数据库配置
-const passport = require('./interface/utils/passport');
+const dbConfig = require('./config'); // 数据库配置
+const passport = require('./utils/passport');
 
-const userRoute = require('./interface/userRoute'); // koa用户相关路由接口
+const userRoute = require('./routes/userRoute'); // koa用户相关路由接口
 
 const app = new Koa();
 

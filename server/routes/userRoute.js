@@ -1,10 +1,10 @@
 
 const Redis = require('koa-redis'); // 处理session // redis
 const nodeMailer = require('nodemailer'); // node发邮件
-const userModel = require('../dbs/model/userModel');
-const Email = require('../dbs/config');
-const Passport = require('./utils/passport');
-const axios = require('./utils/axios');
+const userModel = require('../models/userModel');
+const Email = require('../config');
+const Passport = require('../utils/passport');
+const axios = require('../utils/axios');
 
 const Router = require('@koa/router'); // 邮件配置文件
 const redisCli = new Redis().client; // 获取redis客户端
@@ -18,6 +18,8 @@ const router = new Router({ prefix: '/users' });
 router.post('/signup', async (ctx) => {
   const { username, password, email, code } = ctx.request.body; // post方式
 
+  console.log('注册：', ctx.request.body);
+
   // 校验验证码(读Redis)
   if (code) {
     const saveCode = await redisCli.hget(`nodemail:${username}`, 'code'); // redis 读验证码
@@ -28,13 +30,15 @@ router.post('/signup', async (ctx) => {
       if (new Date().getTime() - saveExpire > 0) {
         // 结果写入响应体 失败为-1 成功为0
         ctx.body = { code: -1, msg: '验证码已过期，请重新尝试' };
-        return false;
+        return;
       }
     } else {
       ctx.body = { code: -1, msg: '请填写正确的验证码' };
+      return;
     }
   } else {
     ctx.body = { code: -1, msg: '请填写验证码' };
+    return;
   }
 
   // 存储用户信息(读写mongoDb)
@@ -71,6 +75,8 @@ router.post('/signin', async (ctx, next) => {
       ctx.body = { code: -1, msg: err };
     } else if (user) {
       ctx.body = { code: 0, msg: '登录成功', user };
+      console.log('登录:', user);
+
       // 进行登录动作
       return ctx.login(user);
     } else {
@@ -134,7 +140,9 @@ router.post('/verify', async (ctx) => {
     if (error) {
       return console.log(error);
     } else {
-      // 发送成功后存储发送信息(验证码，过期时间，收件地址)至redis
+      console.log('发送邮件成功:', info);
+
+      // 发送成功后存储发送信息(验证码，过期时间，收件地址)至redis | hash 特别适合用于存储对象
       // redis哈希表中写入多条数据 hmset(hashListName,key,value,key,value)
       redisCli.hmset(`nodemail:${userEmail.user}`, 'code', userEmail.code, 'expire', userEmail.expire, 'email', userEmail.email);
     }

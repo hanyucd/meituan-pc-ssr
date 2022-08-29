@@ -22,7 +22,12 @@ import indexLife from '@/components/index/index-life/index-life.vue';
 
 export default {
   name: 'IndexPage',
-  components: { indexMenu, indexLife }
+  components: { indexMenu, indexLife },
+  created() {
+    // console.log(Vuex);
+    console.log(this.$store.state);
+    console.log(this.$store.state.geoModule);
+  }
 };
 </script>
 

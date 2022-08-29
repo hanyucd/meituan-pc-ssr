@@ -4,7 +4,7 @@ const axios = require('axios');
 const axiosInstance = axios.create({
   // 进程环境变量设置
   baseURL: `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
-  timeout: 2000,
+  timeout: 3 * 10 * 1000,
   headers: {
   }
 });

@@ -11,6 +11,7 @@ const dbConfig = require('./config'); // 数据库配置
 const passport = require('./utils/passport');
 
 const userRoute = require('./routes/userRoute'); // koa用户相关路由接口
+const geoRoute = require('./routes/geoRoute'); // koa 位置相关路由接口
 
 const app = new Koa();
 
@@ -49,6 +50,7 @@ async function start () {
 
   // koa路由处理
   app.use(userRoute.routes()).use(userRoute.allowedMethods());
+  app.use(geoRoute.routes()).use(geoRoute.allowedMethods());
 
   app.use((ctx) => {
     ctx.status = 200;

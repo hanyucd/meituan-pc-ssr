@@ -6,7 +6,7 @@ const Email = require('../config');
 const Passport = require('../utils/passport');
 const axios = require('../utils/axios');
 
-const Router = require('@koa/router'); // 邮件配置文件
+const Router = require('@koa/router');
 const redisCli = new Redis().client; // 获取redis客户端
 
 // 创建 koa 路由对象，设置前缀

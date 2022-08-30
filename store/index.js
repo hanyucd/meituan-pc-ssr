@@ -5,10 +5,13 @@ export const state = () => ({
 });
 
 export const actions = {
-  async nuxtServerInit({ commit }, { req, app }) {
+  async nuxtServerInit({ commit }, context) {
+    const { req, app } = context;
+    // console.log('请求', req);
+    // console.log('应用', app);
     // 获取定位
-    // const { status, data: { province, city } } = await app.$axios.get('/geo/getPosition');
-    // commit('geo/setPosition', status === 200 ? { city, province } : { city: '', province: '' });
+    const { status, data: { province, city } } = await app.$axios.get('http://localhost:3000/geo/getPosition');
+    commit('geoModule/setPosition', status === 200 ? { city, province } : { city: '', province: '' });
 
     // 获取菜单
     // const { status: status2, data: { menu } } = await app.$axios.get('geo/menu');

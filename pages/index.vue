@@ -24,9 +24,8 @@ export default {
   name: 'IndexPage',
   components: { indexMenu, indexLife },
   created() {
-    // console.log(Vuex);
-    console.log(this.$store.state);
-    console.log(this.$store.state.geoModule);
+    // console.log(this.$store.state);
+    // console.log(this.$store.state.geoModule);
   }
 };
 </script>

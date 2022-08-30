@@ -5,7 +5,9 @@
       <dt>全部分类</dt>
 
       <dd v-for="(item,idx) in menu " :key="idx" @mouseenter="mouseenter">
-        <i :class="item.type" />{{ item.name }}<span class="arrow el-icon-arrow-right" />
+        <i :class="item.type" />
+        {{ item.name }}
+        <span class="arrow" />
       </dd>
     </dl>
 
@@ -19,36 +21,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'IndexMenu',
   data() {
     return {
-      kind: '', // 记录鼠标 hover 时的菜单类型
-      menu: [{
-        type: 'food',
-        name: '美食',
-        child: [{
-          title: '美食',
-          child: ['代金券', '甜点饮品', '火锅', '自助餐', '小吃快餐']
-        }]
-      }, {
-        type: 'takeout',
-        name: '外卖',
-        child: [{
-          title: '外卖',
-          child: ['美团外卖']
-        }]
-      }, {
-        type: 'hotel',
-        name: '酒店',
-        child: [{
-          title: '酒店星级',
-          child: ['经济型', '舒适/三星', '高档/四星', '豪华/五星']
-        }]
-      }]
+      kind: '' // 记录鼠标 hover 时的菜单类型
     };
   },
   computed: {
+    ...mapState('homeModule', ['menu']),
     curdetail() {
       return this.menu.filter(item => item.type === this.kind)[0];
     }

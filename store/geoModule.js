@@ -1,5 +1,5 @@
 const state = () => ({
-  position: {}
+  position: {} // 地理定位
 });
 
 const mutations = {

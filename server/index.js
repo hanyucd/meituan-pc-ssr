@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const consola = require('consola');
-const { Nuxt, Builder } = require('nuxt'); ;; // 处理post请求参数
+const { Nuxt, Builder } = require('nuxt'); // 处理post请求参数
 
 const mongoose = require('mongoose'); // mongoose
 const bodyParser = require('koa-bodyparser');
@@ -12,6 +12,7 @@ const passport = require('./utils/passport');
 
 const userRoute = require('./routes/userRoute'); // koa用户相关路由接口
 const geoRoute = require('./routes/geoRoute'); // koa 位置相关路由接口
+const searchRoute = require('./routes/searchRoute'); // koa 搜索相关路由接口
 
 const app = new Koa();
 
@@ -51,6 +52,7 @@ async function start () {
   // koa路由处理
   app.use(userRoute.routes()).use(userRoute.allowedMethods());
   app.use(geoRoute.routes()).use(geoRoute.allowedMethods());
+  app.use(searchRoute.routes()).use(searchRoute.allowedMethods());
 
   app.use((ctx) => {
     ctx.status = 200;

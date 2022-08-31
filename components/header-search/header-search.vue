@@ -18,22 +18,22 @@
           <dl v-if="isHotPlace" class="hotPlace">
             <dt>热门搜索</dt>
             <!-- SSR：通过vuex得到热门城市列表数据 -->
-            <!-- <dd v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)" :key="idx">
+            <dd v-for="(item,idx) in hotPlace.slice(0, 5)" :key="idx">
               <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
-            </dd> -->
+            </dd>
           </dl>
           <dl v-if="isSearchList" class="searchList">
-            <!-- <dd v-for="(item,idx) in searchList" :key="idx">
+            <dd v-for="(item,idx) in searchList" :key="idx">
               <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
-            </dd> -->
+            </dd>
           </dl>
         </div>
         <!-- 热门景点推荐 -->
         <!-- SSR：通过vuex得到热门景点列表数据 -->
         <p class="suggest">
-          <!-- <a v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)" :key="idx" :href="'/products?keyword='+encodeURIComponent(item.name)">
+          <a v-for="(item,idx) in hotPlace.slice(0,5)" :key="idx" :href="'/products?keyword='+encodeURIComponent(item.name)">
             {{ item.name }}
-          </a> -->
+          </a>
         </p>
         <!-- 中间文字导航 -->
         <ul class="nav">
@@ -79,8 +79,10 @@
 
 <script>
 import _ from 'lodash'; // 用于延时
+import { mapState } from 'vuex';
 
 export default {
+  name: 'HeaderSearch',
   data () {
     return {
       search: '', // 输入值双向绑定
@@ -89,6 +91,8 @@ export default {
     };
   },
   computed: {
+    ...mapState('geoModule', ['position']),
+    ...mapState('homeModule', ['hotPlace']),
     isHotPlace() {
       // 搜索框聚焦且无值
       return this.isFocus && !this.search;
@@ -110,22 +114,21 @@ export default {
         self.isFocus = false;
       }, 200);
     },
-    // // 用于根据输入内容更新实时搜索结果
-    // // 借助loadsh库,实现防抖
+    /**
+     * 用于根据输入内容更新实时搜索结果 | 借助loadsh库,实现防抖
+     */
     input: _.debounce(async function () {
-    //   const self = this;
-    //   // 从vuex取得当前城市，去掉“市”字（第三方服务限制）
-    //   const city = self.$store.state.geo.position.city.replace('市', '');
-    //   // 发送请求获取数据
-    //   self.searchList = [];
-    //   const { status, data: { top } } = await self.$axios.get('/search/top', {
-    //     params: {
-    //       input: self.search,
-    //       city
-    //     }
-    //   });
-    //   // 数据填充
-    //   self.searchList = top.slice(0, 10);
+      const self = this;
+      // 发送请求获取数据
+      self.searchList = [];
+      const { status, data: { top } } = await self.$axios.get('/search/top', {
+        params: {
+          input: self.search,
+          city: this.position.city
+        }
+      });
+      // 数据填充
+      self.searchList = top.slice(0, 10);
     }, 300)
   }
 };

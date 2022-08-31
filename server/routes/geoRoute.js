@@ -3,7 +3,7 @@ const axios = require('../utils/axios');
 
 const menuModel = require('../models/menuModel');
 const provinceModel = require('../models/provinceModel');
-const cityModuel = require('../models/cityModuel');
+const cityModuel = require('../models/cityModel');
 
 // 创建 koa 路由对象，设置前缀
 const router = new Router({ prefix: '/geo' });
@@ -27,8 +27,8 @@ router.get('/getPosition', async (ctx) => {
   // }
 
   ctx.body = {
-    province: '浙江省',
-    city: '杭州市'
+    province: '海南省',
+    city: '三亚市'
   };
 });
 

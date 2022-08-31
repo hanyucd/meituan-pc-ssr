@@ -20,7 +20,7 @@ export const actions = {
 
     // 根据城市获取推荐
     const cityData = app.store.state.geoModule.position.city ? app.store.state.geoModule.position.city.replace('市', '') : '厦门';
-    console.log('城市', cityData);
+    // console.log('城市', cityData);
 
     const { status: status3, data: { result } } = await app.$axios.get(`${serverUrl}/search/hotPlace`, {
       params: {

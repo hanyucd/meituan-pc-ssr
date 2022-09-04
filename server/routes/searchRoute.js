@@ -50,4 +50,34 @@ router.get('/hotPlace', async (ctx) => {
   }
 });
 
+/**
+ * 根据关键字搜索
+ */
+router.get('/resultsByKeywords', async (ctx) => {
+  // const { city, keyword } = ctx.query
+  // let { status, data: {count, pois} } = await axios.get(`http://cp-tools.cn/search/resultsByKeywords`, {
+  //   params: {
+  //     city,
+  //     keyword,
+  //     sign
+  //   }
+  // })
+  // ctx.body = {
+  //   count: status === 200 ? count : 0,
+  //   pois: status === 200 ? pois : []
+  // }
+
+  try {
+    // const result = await ResultsByKeywords.findOne();
+    ctx.body = { count: 0, pois: [] };
+
+    // ctx.body = {
+    //   count: result.count,
+    //   pois: result.pois
+    // };
+  } catch (e) {
+    ctx.body = { count: 0, pois: [] };
+  }
+});
+
 module.exports = router;

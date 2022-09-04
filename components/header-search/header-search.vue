@@ -19,12 +19,12 @@
             <dt>热门搜索</dt>
             <!-- SSR：通过vuex得到热门城市列表数据 -->
             <dd v-for="(item,idx) in hotPlace.slice(0, 5)" :key="idx">
-              <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+              <a :href="'/products?keyword=' + encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
           <dl v-if="isSearchList" class="searchList">
             <dd v-for="(item,idx) in searchList" :key="idx">
-              <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+              <a :href="'/products?keyword=' + encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
         </div>

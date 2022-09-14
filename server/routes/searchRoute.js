@@ -1,6 +1,7 @@
 const Router = require('@koa/router');
 
 const poiModel = require('../models/poiModel');
+const productModel = require('../models/productModel');
 
 // 创建 koa 路由对象，设置前缀
 const router = new Router({ prefix: '/search' });
@@ -77,6 +78,34 @@ router.get('/resultsByKeywords', async (ctx) => {
     // };
   } catch (e) {
     ctx.body = { count: 0, pois: [] };
+  }
+});
+
+/**
+ * 获取制定城市关键词的产品信息
+ */
+router.get('/products', async(ctx) => {
+  // const keyword = ctx.query.keyword || '旅游'
+  // const city = ctx.query.city || '北京'
+  // const city = '广州';
+  const city = '北京';
+  try {
+    const result = await productModel.findOne({ city });
+    ctx.body = {
+      keyword: result.keyword,
+      product: result.product,
+      more: ctx.isAuthenticated() ? result.more : [],
+      login: ctx.isAuthenticated(), // ctx.isAuthenticated(): Is it logged in??
+      type: result.type
+    };
+  } catch (e) {
+    ctx.body = {
+      keyword: '',
+      product: {},
+      more: [],
+      login: false,
+      type: ''
+    };
   }
 });
 

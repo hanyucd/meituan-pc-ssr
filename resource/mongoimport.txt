@@ -9,3 +9,4 @@ mongoimport -d meituan-pc -c pois resource/dbs/pois.dat
 mongoimport -d meituan-pc -c provinces resource/dbs/provinces.dat
 mongoimport -d meituan-pc -c regions resource/dbs/regions.dat
 mongoimport -d meituan-pc -c topsearches resource/dbs/topsearches.dat
+mongoimport -d meituan-pc -c products resource/dbs/products.dat

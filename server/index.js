@@ -14,6 +14,8 @@ const userRoute = require('./routes/userRoute'); // koa用户相关路由接口
 const geoRoute = require('./routes/geoRoute'); // koa 位置相关路由接口
 const searchRoute = require('./routes/searchRoute'); // koa 搜索相关路由接口
 const categoryRoute = require('./routes/categoryRoute'); // koa 搜索相关路由接口
+const cartRoute = require('./routes/cartRoute'); // koa 搜索相关路由接口
+const orderRoute = require('./routes/orderRoute'); // koa 搜索相关路由接口
 
 const app = new Koa();
 
@@ -55,6 +57,8 @@ async function start () {
   app.use(geoRoute.routes()).use(geoRoute.allowedMethods());
   app.use(searchRoute.routes()).use(searchRoute.allowedMethods());
   app.use(categoryRoute.routes()).use(categoryRoute.allowedMethods());
+  app.use(cartRoute.routes()).use(cartRoute.allowedMethods());
+  app.use(orderRoute.routes()).use(orderRoute.allowedMethods());
 
   app.use((ctx) => {
     ctx.status = 200;
